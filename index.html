@@ -1,23 +1,10 @@
 <script>
-// I AM CREATING A GAME ROCK PAPER SCISSOR
 
-// WHERE THE PLAYER IS PLATING AGAINST THE COMPUTER
+// SET VARIABLE playerChoice WITH THE PROMPT VALUE 
+let playerChoice=prompt('MAKE YOU CHOICE: ROCK, PAPER OR SCISSORS');
 
-// THE PLAYER IS MAKING HIS CHOICE BY INSERTING THE
-// INPUT IN A PROMPT WINDOW (CASE INSENSITIVE)
-
-// AND THE COMPUTER RANDOMLY CHOOSE BETWEEN THE 3 OPTIONS
-
-// CREATE AN ARRAY NAMED rockPaperScissors WITH THE 3
-// ELEMENTS IN IT
-
-// CREATE A FUNCTION THAT CHOOSE A RANDOM NUMBER BETWEEN 0 AND 2
-// AND STORES THE VALUE IN A VARIABLE NAMED RANDOM
-
-// USE THE VARIABLE RANDOM TO SELECT ONE OF THE 3 ELEMENTS INSIDE
-// rockPaperScissor
-
-const rockPaperScissor = ['rock','paper','scissors'];
+// SET THE rockPaperScissors ARRAY CONTAINING THE 3 VALUES 
+const rockPaperScissors = ['rock','paper','scissors'];
 
 // THIS RANDOM FUNCTION RETURNS A RANDOM VALUE BETWEEN 0 AND 2
 function random() {
@@ -25,26 +12,45 @@ function random() {
     return Math.floor(Math.random() * 3);
 }
 
-let choice = rockPaperScissor[random()];
+// SET THE computerChoice VARIABLE AND ASSOCIATE IT WITH
+// A RANDOM ARRAY SELECTION
+let computerChoice = rockPaperScissors[random()];
 
-
-
-
-console.log(choice);
-
-
-
-
-
-
-
-function add(a,b) {
-    let result = a+b;
-    return result;
-}
-console.log(add(1,2));
+console.log(computerChoice);
 
 // AT THIS POINT PLAY A SINGLE ROUND AND RETURN A STRING 
+
+function playRound(computerChoice,playerChoice) {
+    
+    let result;
+
+    if (computerChoice == 'rock' & playerChoice == 'paper'){
+        result = "you've won! paper beats rock.";
+    } 
+    else if (computerChoice == 'rock' & playerChoice == 'scissors') {
+        result = "you've lost! rock beats scissors";
+    }
+    else if (computerChoice == 'paper' & playerChoice == 'scissors') {
+        result = "you've won! scissors beats paper.";
+    }
+    else if (computerChoice == 'paper' & playerChoice == 'rock') {
+
+        result = "you've lost! paper beats rock";
+    }
+    else if (computerChoice == 'scissors' & playerChoice == 'rock') {
+        result = "you've won! rock beats scissors";
+    }
+    else if (computerChoice == 'scissors' & playerChoice == 'paper'){
+        result = "you've lost! scissors beats paper";
+    }
+    else {
+        result = "one more time!";
+    }
+    return result;
+}
+
+console.log(playRound(computerChoice,playerChoice));
+
 
 // THAT DECLARES THE WINNER OF THE ROUND ex ROCK BEATS SCISSORS
 
