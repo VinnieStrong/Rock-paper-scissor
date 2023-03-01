@@ -24,7 +24,11 @@ function playRound(computerChoice,playerChoice) {
     
     let result;
 
-    if (computerChoice == 'rock' & playerChoice == 'paper'){
+
+    if (computerChoice == playerChoice) {
+        result = "it's a tie! one more time"
+    }
+    else if (computerChoice == 'rock' & playerChoice == 'paper'){
         result = "you've won! paper beats rock.";
     } 
     else if (computerChoice == 'rock' & playerChoice == 'scissors') {
@@ -44,12 +48,16 @@ function playRound(computerChoice,playerChoice) {
         result = "you've lost! scissors beats paper";
     }
     else {
-        result = "one more time!";
+        result = "you must insert rock, paper or scissors";
     }
     return result;
 }
 
 console.log(playRound(computerChoice,playerChoice));
+
+// CREATE A GAME FUNCTION 
+
+
 
 
 // THAT DECLARES THE WINNER OF THE ROUND ex ROCK BEATS SCISSORS
