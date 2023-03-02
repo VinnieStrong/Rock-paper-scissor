@@ -19,10 +19,11 @@ let computerChoice = rockPaperScissors[random()];
 console.log(computerChoice);
 
 // AT THIS POINT PLAY A SINGLE ROUND AND RETURN A STRING 
+let result;
 
 function playRound(computerChoice,playerChoice) {
     
-    let result;
+    
 
 
     if (computerChoice == playerChoice) {
@@ -55,7 +56,20 @@ function playRound(computerChoice,playerChoice) {
 
 console.log(playRound(computerChoice,playerChoice));
 
-// CREATE A GAME FUNCTION 
+// CREATE A GAME FUNCTION THAT RUNS 5 ROUNDS
+
+// 
+const storeResult = [];
+
+function playGame() {
+    for (let i = 1; i <= 5; i++ ) {
+    storeResult.push(`${result} the ${i} game;`);
+    playRound(computerChoice,playerChoice);
+    
+    }
+
+}
+playGame();
 
 
 
