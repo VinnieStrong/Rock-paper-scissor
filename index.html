@@ -2,6 +2,7 @@
 
 // SET VARIABLE playerChoice WITH THE PROMPT VALUE 
 let playerChoice=prompt('MAKE YOU CHOICE: ROCK, PAPER OR SCISSORS');
+let playerChoiceLower=playerChoice.toLowerCase();
 
 // SET THE rockPaperScissors ARRAY CONTAINING THE 3 VALUES 
 const rockPaperScissors = ['rock','paper','scissors'];
@@ -16,45 +17,52 @@ function random() {
 // A RANDOM ARRAY SELECTION
 let computerChoice = rockPaperScissors[random()];
 
-console.log(computerChoice);
+
 
 // AT THIS POINT PLAY A SINGLE ROUND AND RETURN A STRING 
 let result;
+let playerScore=0;
+let computerScore=0;
 
-function playRound(computerChoice,playerChoice) {
+function playRound(computerChoice,playerChoiceLower) {
     
-    
-
-
-    if (computerChoice == playerChoice) {
-        result = "it's a tie! one more time"
+    if (computerChoice == playerChoiceLower) {
+        result = "it's a tie! one more time";
     }
-    else if (computerChoice == 'rock' & playerChoice == 'paper'){
+    else if (computerChoice == 'rock' & playerChoiceLower == 'paper'){
         result = "you've won! paper beats rock.";
+        playerScore= playerScore + 1;
     } 
-    else if (computerChoice == 'rock' & playerChoice == 'scissors') {
+    else if (computerChoice == 'rock' & playerChoiceLower == 'scissors') {
         result = "you've lost! rock beats scissors";
+        computerScore = computerScore + 1;
     }
-    else if (computerChoice == 'paper' & playerChoice == 'scissors') {
+    else if (computerChoice == 'paper' & playerChoiceLower == 'scissors') {
         result = "you've won! scissors beats paper.";
+        playerScore= playerScore + 1;
     }
-    else if (computerChoice == 'paper' & playerChoice == 'rock') {
+    else if (computerChoice == 'paper' & playerChoiceLower == 'rock') {
 
         result = "you've lost! paper beats rock";
+        computerScore = computerScore + 1;
     }
-    else if (computerChoice == 'scissors' & playerChoice == 'rock') {
+    else if (computerChoice == 'scissors' & playerChoiceLower == 'rock') {
         result = "you've won! rock beats scissors";
+        playerScore= playerScore + 1;
     }
-    else if (computerChoice == 'scissors' & playerChoice == 'paper'){
+    else if (computerChoice == 'scissors' & playerChoiceLower == 'paper'){
         result = "you've lost! scissors beats paper";
+        computerScore = computerScore + 1;
     }
     else {
         result = "you must insert rock, paper or scissors";
     }
     return result;
+
+    
 }
 
-console.log(playRound(computerChoice,playerChoice));
+
 
 // CREATE A GAME FUNCTION THAT RUNS 5 ROUNDS
 
@@ -62,15 +70,19 @@ console.log(playRound(computerChoice,playerChoice));
 const storeResult = [];
 
 function playGame() {
+        
     for (let i = 1; i <= 5; i++ ) {
-    storeResult.push(`${result} the ${i} game;`);
-    playRound(computerChoice,playerChoice);
-    
-    }
+        let computerChoice = rockPaperScissors[random()];
+        let playerChoice=prompt('MAKE YOU CHOICE: ROCK, PAPER OR SCISSORS');
+        let playerChoiceLower=playerChoice.toLowerCase();
+        playRound(computerChoice,playerChoiceLower);
+        console.log(computerChoice);
+        storeResult.push(`${i}st game: ${result};`);
+        }
 
 }
 playGame();
-
+// console.log(computerChoice);
 
 
 
