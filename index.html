@@ -1,8 +1,6 @@
 <script>
 
-// SET VARIABLE playerChoice WITH THE PROMPT VALUE 
-let playerChoice=prompt('MAKE YOU CHOICE: ROCK, PAPER OR SCISSORS');
-let playerChoiceLower=playerChoice.toLowerCase();
+
 
 // SET THE rockPaperScissors ARRAY CONTAINING THE 3 VALUES 
 const rockPaperScissors = ['rock','paper','scissors'];
@@ -14,18 +12,18 @@ function random() {
 }
 
 // SET THE computerChoice VARIABLE AND ASSOCIATE IT WITH
-// A RANDOM ARRAY SELECTION
-let computerChoice = rockPaperScissors[random()];
+// A RANDOM ARRAY SELECTION                                  I VE MOVED ALL THIS IN THE GAME FUNCTION
+//let computerChoice = rockPaperScissors[random()];
 
 
 
-// AT THIS POINT PLAY A SINGLE ROUND AND RETURN A STRING 
+
 let result;
 let playerScore=0;
 let computerScore=0;
 
 function playRound(computerChoice,playerChoiceLower) {
-    
+
     if (computerChoice == playerChoiceLower) {
         result = "it's a tie! one more time";
     }
@@ -57,32 +55,53 @@ function playRound(computerChoice,playerChoiceLower) {
     else {
         result = "you must insert rock, paper or scissors";
     }
-    return result;
-
-    
+    return result;    
 }
 
 
 
-// CREATE A GAME FUNCTION THAT RUNS 5 ROUNDS
 
-// 
+
+// TO STORE THE RESULTS TO BE PRINTED AT THE END
 const storeResult = [];
 
+// PLAY 5 EFFECTIVE GAMES
 function playGame() {
+
+    // IVE MOVED AND SET THIS VARIABLE HERE WHERE THEY BELONG FROM THE TOP
+    let playerChoice= "";
+    let playerChoiceLower="";
+
+    
         
-    for (let i = 1; i <= 5; i++ ) {
-        let computerChoice = rockPaperScissors[random()];
-        let playerChoice=prompt('MAKE YOU CHOICE: ROCK, PAPER OR SCISSORS');
-        let playerChoiceLower=playerChoice.toLowerCase();
+    for (let i = 1; i<= 100; i++ ) {
+
+        // LOOP WHERE EVERYTHING REPEETS 100 TIMES IN THIS CASE JUST TO MAKE SURE DOESNT BREAK TO EARLY    
+        computerChoice = rockPaperScissors[random()];
+        playerChoice=prompt('MAKE YOUR CHOICE: ROCK, PAPER OR SCISSORS');
+        playerChoiceLower=playerChoice.toLowerCase();
         playRound(computerChoice,playerChoiceLower);
         console.log(computerChoice);
-        storeResult.push(`${i}st game: ${result};`);
-        }
-
+        storeResult.push(`Round ${i}: ${result};`);
+        
+        //BREAKS THE LOOP WHEN COMPUTER OR PLAYER SCORE REACHES 3
+        if(computerScore >= 3 || playerScore >= 3) {
+        break ;
+    }    
+    
+    }
+if (playerScore > computerScore) {
+    console.log("YOU'VE WON THE GAME");
+    console.log(storeResult);
 }
+else {
+    console.log("YOU'VE LOST, SORRY");
+    console.log(storeResult);  
+}
+}
+
 playGame();
-// console.log(computerChoice);
+
 
 
 
