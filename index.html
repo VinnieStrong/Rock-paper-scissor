@@ -1,6 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1>Welcome to the Rock paper scissors Game!!</h1>
+   <h2>Please make a selection to play your first Round: Who wins 3 out of 5 rounds wins the game!</h2> 
+   <button id="rock">Rock</button>
+   <button id="paper">Paper</button>
+   <button id="scissors">Scissors</button>
+   <button id="prova">Prova</button>
+</body>
+</html>
+
+
 <script>
-
-
 
 // SET THE rockPaperScissors ARRAY CONTAINING THE 3 VALUES 
 const rockPaperScissors = ['rock','paper','scissors'];
@@ -13,42 +30,42 @@ function random() {
 
 // SET THE computerChoice VARIABLE AND ASSOCIATE IT WITH
 // A RANDOM ARRAY SELECTION                                  I VE MOVED ALL THIS IN THE GAME FUNCTION
-//let computerChoice = rockPaperScissors[random()];
+let computerChoice = rockPaperScissors[random()];
 
 
 
 
-let result;
+let result = "";
 let playerScore=0;
 let computerScore=0;
 
-function playRound(computerChoice,playerChoiceLower) {
+function playRound(computerChoice,playerChoice) {
 
-    if (computerChoice == playerChoiceLower) {
-        result = "it's a tie! one more time";
+    if (computerChoice == playerChoice) {
+         console.log("it's a tie! one more time");
     }
-    else if (computerChoice == 'rock' & playerChoiceLower == 'paper'){
+    else if (computerChoice == 'rock' & playerChoice == 'paper'){
         result = "you've won! paper beats rock.";
         playerScore= playerScore + 1;
     } 
-    else if (computerChoice == 'rock' & playerChoiceLower == 'scissors') {
+    else if (computerChoice == 'rock' & playerChoice == 'scissors') {
         result = "you've lost! rock beats scissors";
         computerScore = computerScore + 1;
     }
-    else if (computerChoice == 'paper' & playerChoiceLower == 'scissors') {
+    else if (computerChoice == 'paper' & playerChoice == 'scissors') {
         result = "you've won! scissors beats paper.";
         playerScore= playerScore + 1;
     }
-    else if (computerChoice == 'paper' & playerChoiceLower == 'rock') {
+    else if (computerChoice == 'paper' & playerChoice== 'rock') {
 
         result = "you've lost! paper beats rock";
         computerScore = computerScore + 1;
     }
-    else if (computerChoice == 'scissors' & playerChoiceLower == 'rock') {
+    else if (computerChoice == 'scissors' & playerChoice == 'rock') {
         result = "you've won! rock beats scissors";
         playerScore= playerScore + 1;
     }
-    else if (computerChoice == 'scissors' & playerChoiceLower == 'paper'){
+    else if (computerChoice == 'scissors' & playerChoice == 'paper'){
         result = "you've lost! scissors beats paper";
         computerScore = computerScore + 1;
     }
@@ -57,6 +74,8 @@ function playRound(computerChoice,playerChoiceLower) {
     }
     return result;    
 }
+
+
 
 
 
@@ -78,29 +97,39 @@ function playGame() {
 
         // LOOP WHERE EVERYTHING REPEETS 100 TIMES IN THIS CASE JUST TO MAKE SURE DOESNT BREAK TO EARLY    
         computerChoice = rockPaperScissors[random()];
-        playerChoice=prompt('MAKE YOUR CHOICE: ROCK, PAPER OR SCISSORS');
-        playerChoiceLower=playerChoice.toLowerCase();
+        // playerChoice=prompt('MAKE YOUR CHOICE: ROCK, PAPER OR SCISSORS');
+        // playerChoiceLower=playerChoice.toLowerCase();
         playRound(computerChoice,playerChoiceLower);
         console.log(computerChoice);
         storeResult.push(`Round ${i}: ${result};`);
         
         //BREAKS THE LOOP WHEN COMPUTER OR PLAYER SCORE REACHES 3
-        if(computerScore >= 3 || playerScore >= 3) {
+        if(computerScore >= 1 || playerScore >= 1) {
         break ;
     }    
     
     }
-if (playerScore > computerScore) {
+    if (playerScore > computerScore) {
     console.log("YOU'VE WON THE GAME");
     console.log(storeResult);
-}
-else {
+    }
+    else {
     console.log("YOU'VE LOST, SORRY");
     console.log(storeResult);  
-}
+    }
 }
 
-playGame();
+
+    let rock = document.querySelector('#rock');
+    let paper = document.querySelector('#paper');
+    let scissors = document.querySelector('#scissors');
+   // let prova = document.querySelector('#prova');
+
+   //  prova.addEventListener('click', e => console.log());
+
+    rock.addEventListener('click', () =>  playRound(computerChoice, 'rock'));
+    paper.addEventListener('click', () => playRound(computerChoice, 'paper'));
+    scissors.addEventListener('click', () =>  playRound(computerChoice, 'scissors'));
 
 
 
