@@ -5,16 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 <body>
    <div class="container">
-       <h1>Welcome to the Rock paper scissors Game!!</h1>
+       <h1 id="title">Welcome to the Rock paper scissors Game!!</h1>
        <h2>Please make a selection to play your first Round: Who wins 3 out of 5 rounds wins the game!</h2> 
        <div class="buttons-container">  
            <button id="rock">Rock</button>
            <button id="paper">Paper</button>
            <button id="scissors">Scissors</button>
-           <button id="prova">Prova</button>
            <br>
            <br>      
         </div> 
@@ -22,10 +22,7 @@
    </div>    
 </body>
 </html>
-
-
 <script>
-
 // SET THE rockPaperScissors ARRAY CONTAINING THE 3 VALUES 
 const rockPaperScissors = ['rock','paper','scissors'];
 
@@ -38,144 +35,86 @@ function random() {
 // SET THE computerChoice VARIABLE AND ASSOCIATE IT WITH
 // A RANDOM ARRAY SELECTION                                  I VE MOVED ALL THIS IN THE GAME FUNCTION
 let computerChoice = rockPaperScissors[random()];
-
 let playerScore=0;
 let computerScore=0;
+let div_r = document.createElement('div');
+    div_r.className = 'result';
+let div_b = document.querySelector('.buttons-container');
+    div_b.appendChild(div_r);
 
 function playRound(computerChoice,playerChoice) {
-    computerChoice = rockPaperScissors[random()];
-    let div_r = document.createElement('div');
-    div_r.className = 'result';
-    let div_b = document.querySelector('.buttons-container');
-    div_b.appendChild(div_r);
-    let hr= document.createElement('h4');
-    hr.className = 'final-result';
-    //hr.textContent = "CONGRATULATIONS!! YOU'VE WON THE GAME";
-    div_b.appendChild(hr);
-
-    if (computerChoice == playerChoice) {
+    
+   if (computerChoice == playerChoice) {
         div_r.textContent =  `it's a tie! one more time. your score: ${playerScore} computer score: ${computerScore}`;
         
     } 
-    
     else if (computerChoice == 'rock' & playerChoice == 'paper'){
-        div_r.textContent = `you've won! paper beats rock.your score: ${playerScore} computer score: ${computerScore}`;
         playerScore= playerScore + 1;
-        
+        div_r.textContent = `you've won! paper beats rock.your score: ${playerScore} computer score: ${computerScore}`;
     } 
     else if (computerChoice == 'rock' & playerChoice == 'scissors') {
+        computerScore += 1;
         div_r.textContent = `you've lost! rock beats scissors. your score: ${playerScore} computer score: ${computerScore}`;
-        computerScore = computerScore + 1;
+
        
     }
     else if (computerChoice == 'paper' & playerChoice == 'scissors') {
+        playerScore += 1;
         div_r.textContent = `you've won! scissors beats paper. your score: ${playerScore} computer score: ${computerScore}`;
-        playerScore= playerScore + 1;
         
     }
     else if (computerChoice == 'paper' & playerChoice== 'rock') {
 
-        div_r.textContent = `you've lost! paper beats rock. your score: ${playerScore} computer score: ${computerScore}`;
         computerScore = computerScore + 1;
-        
+        div_r.textContent = `you've lost! paper beats rock. your score: ${playerScore} computer score: ${computerScore}`;
     }
     else if (computerChoice == 'scissors' & playerChoice == 'rock') {
-        div_r.textContent= `you've won! rock beats scissors. your score: ${playerScore} computer score: ${computerScore}`;
         playerScore= playerScore + 1;
-        
+        div_r.textContent= `you've won! rock beats scissors. your score: ${playerScore} computer score: ${computerScore}`;
     }
     else if (computerChoice == 'scissors' & playerChoice == 'paper') {
-        div_r.textContent = `you've lost! scissors beats paper. your score: ${playerScore} computer score: ${computerScore}`;
         computerScore = computerScore + 1;
-        
-    }
-
-    if(playerScore === 3) {
-        hr.textContent = "CONGRATULATIONS!! YOU'VE WON THE GAME";
-        playerScore = 0;
-        computerScore = 0;
-        
-    }
-    else if (computerScore === 3) {
-        hr.textContent = "SORRY! YOU'VE LOST THE GAME";
-        playerScore = 0;
-        computerScore = 0;
-
-    }
+        div_r.textContent = `you've lost! scissors beats paper. your score: ${playerScore} computer score: ${computerScore}`;
+     }
 }
+let hr= document.createElement('h4');
+let newGame = document.createElement('div');
 
-
-
-
-
-
-
-// TO STORE THE RESULTS TO BE PRINTED AT THE END
-const storeResult = [];
-
-// PLAY 5 EFFECTIVE GAMES
-function playGame(computerChoice, playerChoice) {
-
-    // IVE MOVED AND SET THIS VARIABLE HERE WHERE THEY BELONG FROM THE TOP
-    // let playerChoice= "";
+function playTheGame(computerChoice,playerChoice) {
     
-
+    for(let i=0; i<100; i++) {
     
-        
-    for (let i = 1; i<= 100; i++ ) {
-
-        // LOOP WHERE EVERYTHING REPEETS 100 TIMES IN THIS CASE JUST TO MAKE SURE DOESNT BREAK TO EARLY    
-        computerChoice = rockPaperScissors[random()];
-        playerChoice.addEventListener('click');
-        // playerChoice=prompt('MAKE YOUR CHOICE: ROCK, PAPER OR SCISSORS');
-        // playerChoiceLower=playerChoice.toLowerCase();
-        playRound(computerChoice,playerChoice);
-        console.log(`computer choose: ${computerChoice}`);
-        console.log(`player choose: ${playerChoice}`)
-        storeResult.push(`Round ${i}: ${result};`);
-        
-         
-        
-        //BREAKS THE LOOP WHEN COMPUTER OR PLAYER SCORE REACHES 3
-        if(computerScore >= 3 || playerScore >= 3) {
-        break ;
-    }    
+    computerChoice = rockPaperScissors[random()];
+    playRound(computerChoice,playerChoice);
+    playerChoice = "";
     
-    }
-    if (playerScore > computerScore) {
-    console.log("YOU'VE WON THE GAME");
-    console.log(storeResult);
-    
-    }
-    else {
-    console.log("YOU'VE LOST, SORRY");
-    console.log(storeResult); 
-     
-    }
+        if(playerScore === 3) {
+            let hr= document.createElement('h4');
+            hr.className = 'final-result';
+            hr.textContent = "CONGRATULATIONS!! YOU'VE WON THE GAME";
+            div_r.appendChild(hr);
+            newGame.textContent= 'make another selection to start another game!';
+            hr.appendChild(newGame);
+            playerScore = 0;
+            computerScore = 0;
+            break;
+        }
+        else if (computerScore ===3) {
+            hr.className = 'final-result';
+            hr.textContent = "SORRY!! YOU'VE LOST!";
+            div_r.appendChild(hr);
+            newGame.textContent= 'make another selection to start another game!';
+            hr.appendChild(newGame);
+            computerScore = 0;
+            playerScore = 0;
+            break;
+        }
+    } 
 }
-
-
     let rock = document.querySelector('#rock');
     let paper = document.querySelector('#paper');
     let scissors = document.querySelector('#scissors');
-   // let prova = document.querySelector('#prova');
-
-   //  prova.addEventListener('click', e => console.log());
-
-    rock.addEventListener('click', () =>  playRound(computerChoice, 'rock'));
-    paper.addEventListener('click', () => playRound(computerChoice, 'paper'));
-    scissors.addEventListener('click', () =>  playRound(computerChoice, 'scissors'));
-
-    
-
-
-
-
-
-
-
-// THAT DECLARES THE WINNER OF THE ROUND ex ROCK BEATS SCISSORS
-
-// AFTER PLAYING 5 ROUNDS FINISH THE GAME AND DECLARE THE WINNER!
-
+        rock.addEventListener('click', () =>  playTheGame(computerChoice, 'rock'));
+        paper.addEventListener('click', () => playTheGame(computerChoice, 'paper'));
+        scissors.addEventListener('click', () =>  playTheGame(computerChoice, 'scissors'));    
 </script>
